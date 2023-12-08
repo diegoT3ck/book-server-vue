@@ -1,0 +1,32 @@
+{
+    "books": [
+        {
+            "id": 1,
+            "title": "Libro 1",
+            "autor": "Diego Teck",
+            "public_at": "03-3-2023",
+            "ISBN": "84-253-4025-3"
+        },
+        {
+            "id": 2,
+            "title": "Libro 2",
+            "autor": "Diego Teck",
+            "public_at": "03-12-2023",
+            "ISBN": "84-253-4025-3"
+        },
+        {
+            "id": 3,
+            "title": "asdasd",
+            "autor": "Diego Teck",
+            "public_at": "03-12-2023",
+            "ISBN": "84-253-4025-3"
+        },
+        {
+            "id": 4,
+            "title": "cuarto",
+            "autor": "Diego Teck",
+            "public_at": "03-12-2023",
+            "ISBN": "84-253-4025-3"
+        }
+    ]
+}
