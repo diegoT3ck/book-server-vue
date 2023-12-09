@@ -2,6 +2,9 @@ require('dotenv').config()
 
 const express = require("express")
 const cors = require('cors');
+const bodyParser = require('body-parser');
+const multer = require('multer');
+const upload = multer();
 
 const fs = require('fs');
 
@@ -17,8 +20,10 @@ app.use(cors(corsOptions));
 
 // middleware
 // habilitar lecturas de datos de formulario
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
+app.use(upload.array()); 
+app.use(express.static('public'));
 
 // route
 const routes = require('./routes/router.js')

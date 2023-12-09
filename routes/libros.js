@@ -31,15 +31,16 @@ librosRoutes.get('/libros', (req, res) => {
   librosRoutes.post('/libros', async (req, res) => {
     try {      
       const { books } = await getLibrosData()
-      const { title, autor, public_at, ISBN } = { ...req.body }
+       console.log('post', req.body)
+      const { title, autor, public_at, isbn, estatus } = { ...req.body }
       const store = {
         books : [...books, {
           id: books.length + 1,
-          title, autor, public_at, ISBN
+          title, autor, public_at: Date.parse(public_at), isbn, status: (/true/).test(estatus)
         }],
       }
       guardarLibrosData(store);
-      res.send({answer: true, msg: 'Nuevo registrado creado'})
+      res.send({answer: true, msg: 'Nuevo registrado creado', request:req.body })
 
     } catch (error) {
       res.send({answer: false, msg: error})
@@ -52,7 +53,7 @@ librosRoutes.put('/libros/:id', async (req, res) => {
   try {
     const { books } = await getLibrosData()
     const { id } = req.params
-    const {title, autor, public_at, ISBN } = { ...req.body }
+    const {title, autor, public_at, isbn, estatus } = { ...req.body }
   
     const updatedBooks = await books.map(item => {
       if (item.id == id) {
@@ -60,14 +61,20 @@ librosRoutes.put('/libros/:id', async (req, res) => {
           ...item,
           title: title || item.title,
           autor: autor || item.autor,
-          public_at: public_at || item.public_at,
-          ISBN: ISBN || item.ISBN,
+          public_at: Date.parse(public_at) || item.public_at,
+          isbn: isbn || item.isbn,
+          status: (/true/).test(estatus) || item.status
         };
       } else {
         return item;
       }
-    });    
-    guardarLibrosData(updatedBooks);
+    });  
+    const update = {
+      books: 
+        [...updatedBooks]
+    }  
+  
+    guardarLibrosData(update);
     res.send({answer: true, msg: 'Los datos se han actualizado'})
   } catch (error) {
     res.send({answer: false, msg: error})
@@ -81,8 +88,11 @@ librosRoutes.delete('/libros/:id', async (req, res) => {
   try {    
     const { books } = await getLibrosData()
     const { id } = req.params
-    const deleteBook = await books.filter(item => item.id === id )
-    guardarLibrosData(deleteBook);
+    const deleteBook = await books.filter(item => item.id != id )
+ 
+    guardarLibrosData({books: [...deleteBook]});
+    // console.log('antes', books)
+    // console.log('nuevo ', deleteBook)
     res.send({answer: true, msg: 'El registro se elimino'})  
   } catch (error) {
     res.send({answer: false, msg: error})
