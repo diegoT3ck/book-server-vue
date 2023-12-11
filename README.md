@@ -289,6 +289,3 @@ Si deseas contribuir al servidor, sigue estos pasos:
 4. Haz push a tu rama: `git push origin feature/nueva-funcionalidad`.
 5. Crea un pull request en GitHub.
 
-## Licencia
-
-Este servidor está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para obtener más detalles.
