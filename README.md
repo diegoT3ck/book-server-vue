@@ -1,6 +1,6 @@
-# Documentación del Servidor para el CRUD de Libros
+# Servidor CRUD de Libros ExpressJS/NodeJs
 
-Esta documentación describe los pasos para ejecutar y comprender el servidor desarrollado en Node.js y Next.js que alimenta el CRUD de libros. La aplicación utiliza un archivo JSON como base de datos y maneja las variables de entorno a través de un archivo `.env`.
+Esta documentación describe los pasos para ejecutar y comprender el servidor desarrollado en Node.js y Express.js que alimenta el CRUD de libros. La aplicación utiliza un archivo JSON como base de datos y maneja las variables de entorno a través de un archivo `.env`.
 
 ## Requisitos Previos
 
@@ -275,7 +275,6 @@ Asegúrate de tener instalado Node.js en tu máquina antes de comenzar.
 
 ## Tecnologías Utilizadas
 
-- [Node.js](https://nodejs.org/)
 - [Express](https://expressjs.com/)
 - [Next.js](https://nextjs.org/)
 
