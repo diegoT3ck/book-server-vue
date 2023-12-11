@@ -36,7 +36,11 @@ librosRoutes.get('/libros', (req, res) => {
       const store = {
         books : [...books, {
           id: books.length + 1,
-          title, autor, public_at: Date.parse(public_at), isbn, status: (/true/).test(estatus)
+          title, 
+          autor, 
+          public_at: Date.parse(public_at),
+          isbn, 
+          status: estatus == 1 ? true : false
         }],
       }
       guardarLibrosData(store);
@@ -63,7 +67,7 @@ librosRoutes.put('/libros/:id', async (req, res) => {
           autor: autor || item.autor,
           public_at: Date.parse(public_at) || item.public_at,
           isbn: isbn || item.isbn,
-          status: (/true/).test(estatus) || item.status
+          status: estatus == 1 ? true : false
         };
       } else {
         return item;
@@ -75,7 +79,7 @@ librosRoutes.put('/libros/:id', async (req, res) => {
     }  
   
     guardarLibrosData(update);
-    res.send({answer: true, msg: 'Los datos se han actualizado'})
+    res.send({answer: true, msg: 'Los datos se han actualizado', updatedBooks})
   } catch (error) {
     res.send({answer: false, msg: error})
   }
