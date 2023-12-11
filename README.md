@@ -38,17 +38,22 @@ Asegúrate de tener instalado Node.js en tu máquina antes de comenzar.
 
     Asegúrate de ajustar las variables según las necesidades de tu entorno.
 
-2. Abre el archivo `app.js` para configurar el CORS y la conexión con el cliente:
+2. Abre el archivo `app.js` para configurar el CORS y la conexión con el cliente: (OPCIONAL)
 
     ```javascript
     // app.js
-    const express = require('express');
+    require('dotenv').config()
+    const express = require("express")
     const cors = require('cors');
     const app = express();
 
-    const { SERVER_PORT, CLIENT_HOST } = process.env;
-
-    app.use(cors({ origin: CLIENT_HOST, credentials: true }));
+    // Configurar cors
+    const corsOptions = {
+      origin: `${process.env.CLIENT_HOST}`, // Especifica el origen exacto
+      credentials: true, // Habilita las credenciales en la respuesta (Access-Control-Allow-Credentials)
+    };
+    
+    app.use(cors(corsOptions));
 
     // Resto de la configuración del servidor
     ```
